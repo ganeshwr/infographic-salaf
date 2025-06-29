@@ -97,36 +97,37 @@ const MisconceptionsSection: React.FC = () => {
                 <div 
                   className={`flip-card-inner ${flippedCards.has(index) ? 'flipped' : ''}`}
                   onClick={() => toggleCard(index)}
-                  role="button"
-                  tabIndex={0}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
                       toggleCard(index);
                     }
                   }}
+                  tabIndex={0}
+                  role="button"
                   aria-label={`Learn about misconception: ${item.misconception}`}
                 >
                   {/* Front of card - Misconception */}
-                  <div className="flip-card-front bg-gradient-to-br from-error to-error/80 text-white cursor-pointer">
-                    <div className="p-2 bg-white/20 rounded-full mb-4">
+                  <div className="flip-card-front bg-gradient-to-br from-red-500 to-red-600 text-white">
+                    <div className="p-3 bg-white/20 rounded-full mb-4">
                       <AlertTriangle className="w-8 h-8" />
                     </div>
                     <h4 className="text-lg font-bold mb-4 text-center">Common Misconception</h4>
-                    <p className="text-center leading-relaxed mb-4">"{item.misconception}"</p>
-                    <div className="flex items-center justify-center text-sm opacity-80">
+                    <p className="text-center leading-relaxed mb-6 text-sm px-2">"{item.misconception}"</p>
+                    <div className="flex items-center justify-center text-sm opacity-80 mt-auto">
                       <RefreshCw className="w-4 h-4 mr-1" />
                       Click to see the truth
                     </div>
                   </div>
 
                   {/* Back of card - Reality */}
-                  <div className="flip-card-back bg-gradient-to-br from-success to-success/80 text-white cursor-pointer">
-                    <div className="p-2 bg-white/20 rounded-full mb-4">
+                  <div className="flip-card-back bg-gradient-to-br from-green-500 to-green-600 text-white">
+                    <div className="p-3 bg-white/20 rounded-full mb-4">
                       <CheckCircle className="w-8 h-8" />
                     </div>
-                    <h4 className="text-lg font-bold mb-2 text-center">{item.reality}</h4>
-                    <p className="text-sm leading-relaxed mb-3">{item.explanation}</p>
-                    <div className="text-xs opacity-90 italic">
+                    <h4 className="text-lg font-bold mb-3 text-center">{item.reality}</h4>
+                    <p className="text-sm leading-relaxed mb-4 px-1">{item.explanation}</p>
+                    <div className="text-xs opacity-90 italic leading-relaxed px-1">
                       {item.details}
                     </div>
                   </div>
