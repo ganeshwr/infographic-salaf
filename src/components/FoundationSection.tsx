@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Users, BookOpen, Calendar, MapPin } from 'lucide-react';
+import { useTranslation } from '../hooks/useTranslation';
 
 const FoundationSection: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [activeTimeline, setActiveTimeline] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -25,26 +27,26 @@ const FoundationSection: React.FC = () => {
 
   const timelineData = [
     {
-      period: "1st Generation",
+      period: t('foundation.firstGeneration'),
       timeframe: "610-661 CE",
-      description: "The Companions (Sahabah)",
-      details: "Those who met Prophet Muhammad ﷺ, believed in him, and died as Muslims. They received direct instruction and witnessed the revelation.",
+      description: t('foundation.companions'),
+      details: t('foundation.companionsDesc'),
       icon: <Users className="w-6 h-6" />,
       color: "bg-primary"
     },
     {
-      period: "2nd Generation", 
+      period: t('foundation.secondGeneration'), 
       timeframe: "661-740 CE",
-      description: "The Followers (Tabi'un)",
-      details: "Students of the Companions who learned from them directly. They preserved and transmitted the teachings with accuracy.",
+      description: t('foundation.followers'),
+      details: t('foundation.followersDesc'),
       icon: <BookOpen className="w-6 h-6" />,
       color: "bg-secondary"
     },
     {
-      period: "3rd Generation",
+      period: t('foundation.thirdGeneration'),
       timeframe: "740-820 CE", 
-      description: "Followers of Followers (Tabi' Tabi'in)",
-      details: "Students of the Tabi'un who continued the chain of authentic transmission and scholarly methodology.",
+      description: t('foundation.followersOfFollowers'),
+      details: t('foundation.followersOfFollowersDesc'),
       icon: <Calendar className="w-6 h-6" />,
       color: "bg-accent"
     }
@@ -56,13 +58,11 @@ const FoundationSection: React.FC = () => {
         <div className={`transition-all duration-1000 ${isVisible ? 'animate-slide-up' : 'opacity-0'}`}>
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6">
-              What is Manhaj Salaf?
+              {t('foundation.title')}
             </h2>
             <div className="w-20 h-1 bg-secondary mx-auto mb-8 rounded-full" />
             <p className="text-xl text-neutral-600 max-w-4xl mx-auto leading-relaxed">
-              Manhaj Salaf (منهج السلف) literally means "the methodology of the predecessors." 
-              It refers to understanding and practicing Islam according to the way of the Salaf as-Salih 
-              (السلف الصالح) - the righteous predecessors.
+              {t('foundation.description')}
             </p>
           </div>
 
@@ -70,14 +70,13 @@ const FoundationSection: React.FC = () => {
           <div className="bg-gradient-to-r from-primary-light to-accent p-8 rounded-2xl text-white mb-16 islamic-border">
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div>
-                <h3 className="text-2xl font-bold mb-4">Core Definition</h3>
+                <h3 className="text-2xl font-bold mb-4">{t('foundation.coreDefinition')}</h3>
                 <p className="text-lg leading-relaxed">
-                  Following the understanding and practice of Islam as demonstrated by the first three 
-                  generations of Muslims, who were praised by Prophet Muhammad ﷺ as the best of people.
+                  {t('foundation.coreDefinitionText')}
                 </p>
                 <div className="mt-6 p-4 bg-white/10 rounded-lg">
                   <p className="arabic-text text-2xl mb-2">خَيْرُ النَّاسِ قَرْنِي</p>
-                  <p className="text-sm italic">"The best of people are my generation" - Hadith</p>
+                  <p className="text-sm italic">{t('foundation.hadithText')}</p>
                 </div>
               </div>
               <div className="flex justify-center">
@@ -89,7 +88,7 @@ const FoundationSection: React.FC = () => {
           {/* Interactive Timeline */}
           <div className="mb-16">
             <h3 className="text-3xl font-bold text-center text-primary mb-12">
-              The Three Blessed Generations
+              {t('foundation.threeGenerations')}
             </h3>
             
             <div className="grid md:grid-cols-3 gap-8">
@@ -137,35 +136,35 @@ const FoundationSection: React.FC = () => {
           {/* Key Principles Preview */}
           <div className="bg-geometric-light rounded-2xl p-8">
             <h3 className="text-2xl font-bold text-center text-primary mb-8">
-              Why Follow Their Methodology?
+              {t('foundation.whyFollow')}
             </h3>
             <div className="grid md:grid-cols-2 gap-8">
               <div className="space-y-4">
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-primary rounded-full mt-3 flex-shrink-0" />
-                  <p><strong>Divine Testimony:</strong> Allah praised them in the Quran</p>
+                  <p><strong>{t('foundation.divineTestimony').split(':')[0]}:</strong> {t('foundation.divineTestimony').split(':')[1]}</p>
                 </div>
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-primary rounded-full mt-3 flex-shrink-0" />
-                  <p><strong>Prophetic Praise:</strong> Muhammad ﷺ testified to their excellence</p>
+                  <p><strong>{t('foundation.propheticPraise').split(':')[0]}:</strong> {t('foundation.propheticPraise').split(':')[1]}</p>
                 </div>
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-primary rounded-full mt-3 flex-shrink-0" />
-                  <p><strong>Direct Access:</strong> Closest to the original source</p>
+                  <p><strong>{t('foundation.directAccess').split(':')[0]}:</strong> {t('foundation.directAccess').split(':')[1]}</p>
                 </div>
               </div>
               <div className="space-y-4">
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-secondary rounded-full mt-3 flex-shrink-0" />
-                  <p><strong>Purity of Understanding:</strong> Free from later innovations</p>
+                  <p><strong>{t('foundation.purityOfUnderstanding').split(':')[0]}:</strong> {t('foundation.purityOfUnderstanding').split(':')[1]}</p>
                 </div>
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-secondary rounded-full mt-3 flex-shrink-0" />
-                  <p><strong>Comprehensive Guidance:</strong> Complete way of life</p>
+                  <p><strong>{t('foundation.comprehensiveGuidance').split(':')[0]}:</strong> {t('foundation.comprehensiveGuidance').split(':')[1]}</p>
                 </div>
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-secondary rounded-full mt-3 flex-shrink-0" />
-                  <p><strong>Proven Results:</strong> Successfully implemented Islam</p>
+                  <p><strong>{t('foundation.provenResults').split(':')[0]}:</strong> {t('foundation.provenResults').split(':')[1]}</p>
                 </div>
               </div>
             </div>

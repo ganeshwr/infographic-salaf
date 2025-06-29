@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BookOpen, Heart, Users, Star } from 'lucide-react';
+import { useTranslation } from '../hooks/useTranslation';
 
 interface HeroSectionProps {
   onStartLearning: () => void;
@@ -7,6 +8,7 @@ interface HeroSectionProps {
 
 const HeroSection: React.FC<HeroSectionProps> = ({ onStartLearning }) => {
   const [isVisible, setIsVisible] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     setIsVisible(true);
@@ -34,32 +36,31 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onStartLearning }) => {
       <div className="container-width section-padding text-center text-white relative z-10">
         <div className={`transition-all duration-1000 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 gradient-text">
-            Understanding Manhaj Salaf
+            {t('hero.title')}
           </h1>
           <div className="w-24 h-1 bg-secondary mx-auto mb-8 rounded-full" />
           <p className="text-xl md:text-2xl mb-8 text-neutral-100 max-w-3xl mx-auto leading-relaxed">
-            A Clear, Authentic Guide to Islamic Methodology
+            {t('hero.subtitle')}
           </p>
           <p className="text-lg mb-12 text-neutral-200 max-w-2xl mx-auto">
-            Discover the true teachings, clear misconceptions, and learn from scholarly tradition 
-            in an accessible, engaging way.
+            {t('hero.description')}
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button
               onClick={onStartLearning}
               className="btn-secondary text-lg px-8 py-4 transform hover:scale-105 transition-all duration-300"
-              aria-label="Start learning about Manhaj Salaf"
+              aria-label={t('hero.startLearning')}
             >
               <BookOpen className="inline-block w-5 h-5 mr-2" />
-              Begin Your Journey
+              {t('hero.startLearning')}
             </button>
             <button
               onClick={() => document.getElementById('misconceptions')?.scrollIntoView({ behavior: 'smooth' })}
               className="btn-outline text-white border-white hover:bg-white hover:text-primary text-lg px-8 py-4"
-              aria-label="Jump to clearing misconceptions section"
+              aria-label={t('hero.clearMisconceptions')}
             >
-              Clear Misconceptions
+              {t('hero.clearMisconceptions')}
             </button>
           </div>
 
@@ -67,15 +68,15 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onStartLearning }) => {
           <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <div className="text-center">
               <div className="text-3xl font-bold text-secondary mb-2">1400+</div>
-              <div className="text-neutral-200">Years of Continuous Tradition</div>
+              <div className="text-neutral-200">{t('hero.yearsOfTradition')}</div>
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold text-secondary mb-2">3</div>
-              <div className="text-neutral-200">Blessed Generations (Salaf)</div>
+              <div className="text-neutral-200">{t('hero.blessedGenerations')}</div>
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold text-secondary mb-2">∞</div>
-              <div className="text-neutral-200">Opportunities to Learn</div>
+              <div className="text-neutral-200">{t('hero.opportunitiesToLearn')}</div>
             </div>
           </div>
         </div>

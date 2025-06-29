@@ -8,6 +8,7 @@ import PracticalApplicationsSection from './components/PracticalApplicationsSect
 import FAQSection from './components/FAQSection';
 import ResourcesSection from './components/ResourcesSection';
 import ProgressTracker from './components/ProgressTracker';
+import LanguageSwitcher from './components/LanguageSwitcher';
 
 function App() {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -66,6 +67,8 @@ function App() {
 
   return (
     <div className="min-h-screen">
+      <LanguageSwitcher />
+      
       <ProgressTracker
         progress={scrollProgress}
         sections={sections}
